@@ -57,6 +57,7 @@ export default class App extends Component {
     this.MoviesService.getGenres().then((genre) => {
       this.updateStateGenres(genre);
     });
+    window.addEventListener("storage", this.onGetRate());
   }
 
   componentDidUpdate() {
@@ -183,6 +184,10 @@ export default class App extends Component {
       currentMode: activeKey
     });
   };
+
+  componentWillUnmount() {
+    window.removeEventListener("storage", this.onGetRate());
+  }
 
   render() {
     const {
